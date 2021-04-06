@@ -1,7 +1,7 @@
 # Space-Invaders-Game
 
 <p align="center">
-  <img src="assets/toreadme/demo.jpg">
+  <img src="./assets/toreadme/demo.jpg">
 </p>
 
 ## Descrição
