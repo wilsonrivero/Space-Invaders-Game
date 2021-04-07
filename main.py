@@ -137,6 +137,9 @@ while run:
       elif score > 20:
          group_enemies.add(Enemies())
 
+      elif score > 30:
+         group_enemies.add(Enemies())
+
 
    for event in pygame.event.get():
       if event.type == pygame.QUIT:
