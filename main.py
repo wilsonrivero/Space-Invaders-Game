@@ -1,6 +1,7 @@
 import pygame
 from pygame import mixer
 import random
+import time
 
 
 pygame.init()
@@ -48,22 +49,22 @@ class SpaceShip(pygame.sprite.Sprite):
    def update(self):
       keys = pygame.key.get_pressed()
 
-      if keys[pygame.K_d]:
+      if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
          if self.rect.x < WIDTH - 30:
             self.rect.x += self.speed
          else:
             self.rect.x = 570
 
-      if keys[pygame.K_a]:
+      if keys[pygame.K_a] or keys[pygame.K_LEFT]:
          if self.rect.x > 0:
             self.rect.x -= self.speed
          else:
             self.rect.x = 0
 
-      if keys[pygame.K_w]:
+      if keys[pygame.K_w] or keys[pygame.K_UP]:
          self.rect.y -= self.speed
 
-      if keys[pygame.K_s]:
+      if keys[pygame.K_s] or keys[pygame.K_DOWN]:
          if self.rect.y < HEIGHT - 30:
             self.rect.y += self.speed
          else:
@@ -71,9 +72,6 @@ class SpaceShip(pygame.sprite.Sprite):
 
    def create_fire(self):
       self.bullets.add(Bullets(*self.rect.center))
-
-   
-   
 
 
 class Bullets(pygame.sprite.Sprite):
@@ -108,6 +106,7 @@ class Enemies(pygame.sprite.Sprite):
          health -= 1
 
       if health == 0:
+         time.sleep(3)
          pygame.quit()
 
 
@@ -133,12 +132,12 @@ while run:
 
       if score > 10:
          group_enemies.add(Enemies())
+         
+         if score > 20:
+            group_enemies.add(Enemies())
 
-      elif score > 20:
-         group_enemies.add(Enemies())
-
-      elif score > 30:
-         group_enemies.add(Enemies())
+            if score > 30:
+               group_enemies.add(Enemies())
 
 
    for event in pygame.event.get():
